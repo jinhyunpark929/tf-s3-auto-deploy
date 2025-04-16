@@ -111,6 +111,9 @@ jobs:
       - name: 🧱 Terraform Init
         run: terraform init
 
+      - name: 🚀 Terraform Apply (again for output)
+        run: terraform apply -auto-approve
+
       - name: 💬 Get S3 bucket name
         id: bucket
         run: |
