@@ -26,7 +26,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: 📥 Install Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: 1.6.6
 
@@ -50,9 +50,12 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: 📥 Install Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: 1.6.6
+
+      - name: 🧱 Terraform Init
+        run: terraform init
 
       - name: 🧪 Terraform Plan
         run: terraform plan
@@ -74,9 +77,12 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: 📥 Install Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: 1.6.6
+
+      - name: 🧱 Terraform Init
+        run: terraform init
 
       - name: 🚀 Terraform Apply
         run: terraform apply -auto-approve
