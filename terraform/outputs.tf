@@ -1,3 +1,3 @@
-output "website_url" {
-  value = aws_s3_bucket.static_site.website_endpoint
+output "bucket_name" {
+  value = aws_s3_bucket.ts_bucket.bucket
 }
