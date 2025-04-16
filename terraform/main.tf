@@ -35,4 +35,35 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
 resource "aws_s3_bucket_policy" "public_read" {
   bucket = aws_s3_bucket.static_site.bucket
 
-  policy = json
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Sid       = "PublicReadGetObject"
+      Effect    = "Allow"
+      Principal = "*"
+      Action    = "s3:GetObject"
+      Resource  = "${aws_s3_bucket.static_site.arn}/*"
+    }]
+  })
+}
+
+resource "aws_s3_object" "index" {
+  bucket       = aws_s3_bucket.static_site.bucket
+  key          = "index.html"
+  source       = "../assets/index.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "error" {
+  bucket       = aws_s3_bucket.static_site.bucket
+  key          = "error.html"
+  source       = "../assets/error.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "wallpaper" {
+  bucket       = aws_s3_bucket.static_site.bucket
+  key          = "images/home_wallpaper.jpg"
+  source       = "../assets/images/home_wallpaper.jpg"
+  content_type = "image/jpeg"
+}
